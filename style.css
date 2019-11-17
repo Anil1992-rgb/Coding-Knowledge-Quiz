@@ -1,0 +1,45 @@
+.buttons001 {
+    background-color: purple;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.buttons002 {
+    background-color: purple;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    width: auto;
+}
+
+.container-fluid {
+    margin-top: 50px;
+}
+
+.btn-primary {
+    background-color: purple;
+}
+
+#text001 {
+    text-align: center;
+}
+
+#text002 {
+    text-align: left;
+}
+
+#green001 {
+    color: green;
+}
+
+#red001 {
+    color: red;
+}
+
+.buttons002:hover {
+    opacity: .5;
+}
