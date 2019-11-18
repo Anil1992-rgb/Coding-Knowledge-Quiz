@@ -1,3 +1,11 @@
+#initiaLForm {
+    text-align: center;
+}
+
+.row {
+    margin-top: 150px;
+}
+
 .buttons001 {
     background-color: purple;
     color: white;
@@ -42,4 +50,18 @@
 
 .buttons002:hover {
     opacity: .5;
+}
+
+#endquiz {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#finalScore {
+    text-align: center;
+    text-decoration-style: wavy;
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-style: italic;
+    color: green;
 }

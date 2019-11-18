@@ -1,3 +1,16 @@
+var Initialss = document.getElementById("initial");
+var initiaLLForm = document.getElementById("initiaLForm");
+initiaLLForm.style.display = "none";
+document.getElementById("line2").style.display = "none";
+
+
+
+document.querySelector('form.initialForm').addEventListener("submit", function(e) {
+    e.preventDefault();
+    console.log(Initialss.value);
+})
+
+
 // grabbing th div with the timer ID //
 var timeDisplay = document.getElementById("timer");
 
@@ -63,6 +76,7 @@ var i = ["Incorrect", "Incorrect", "Incorrect", "Incorrect", "Incorrect"];
 var s = 0;
 s++;
 
+
 document.getElementById("scoree").style.display = "none";
 
 function begin001() {
@@ -85,6 +99,7 @@ function q1c() {
     option004.innerHTML = "";
     next001.innerHTML = "<button class=buttons001 onclick=new002()>Next</button>";
     score001.innerHTML = s++;
+
 }
 
 function q1i() {
@@ -213,16 +228,30 @@ function q5i() {
 }
 
 function end001() {
-    message001.innerHTML = "End of Quiz.";
+    next001.innerHTML = "";
+    endquiz.innerHTML = "All Done!";
     question001.innerHTML = "";
     option001.innerHTML = "";
     option002.innerHTML = "";
     option003.innerHTML = "";
     option004.innerHTML = "";
-    next001.innerHTML = "<div id=text001>" + "<button class=buttons001 onclick=repeat001()>Repeat</button>" + "</div>";
     answer001.innerHTML = "";
+    initiaLLForm.style.display = "block";
+    document.getElementById("linee").style.display = "none";
+    document.getElementById("line2").style.display = "block";
+    finalScore.innerHTML = "Your final score is: ";
+
+
+
 }
 
-function repeat001() {
-    location.reload();
+
+function validateForm() {
+    var x = document.forms["myForm"]["Initials"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    console.log("Form")
+
 }

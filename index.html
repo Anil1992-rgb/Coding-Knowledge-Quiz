@@ -14,22 +14,28 @@
 <body>
     <nav class="navbar">
         <a href="highscores.html">View Highscores</a>
-        <div id="timer">Time: 75</div>
+        <div id="timer">Time: 0</div>
     </nav>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 col-sm-12 mx-auto">
-                <!--<div id="frame001">-->
                 <div id="text001">
                     <h2 id="header">Coding Quiz Challenge!</h2>
                     <p id="scoree"> Score: <text id="score001">0</text></p>
-                    <hr />
+                    <hr id="linee" />
                     <div id="message001">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds.
                     </div>
+                    <div id="endquiz"></div>
+                    <hr id="line2" />
                     <br/>
+                    <div id="finalScore"></div>
                 </div>
                 <div id="text002">
+                    <form id="initiaLForm" class="initialForm" action="highscores.html" method="post" name="myForm" onsubmit="return validateForm()">
+                        <strong>Enter Initials:</strong> <input id="initial" type="text" name="Initials" required>
+                        <input class="buttons001" type="submit" value="Submit" action="highscores.html" onclick="location.href = 'highscores.html';">
+                    </form>
                     <div id="question001"></div>
                     <div id="option001"></div>
                     <div id="option002"></div>
@@ -44,24 +50,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script src="script.js"></script>
 </body>
