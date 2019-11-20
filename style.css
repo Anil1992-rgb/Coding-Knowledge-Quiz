@@ -1,67 +1,64 @@
-#initiaLForm {
+.content {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    background-color: lightgrey;
+    padding: 20px;
+    width: 100%;
     text-align: center;
+    }
+
+.question-content {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    background-color: lightgrey;
+    padding: 20px;
+    width: 100%;
 }
 
-.row {
-    margin-top: 150px;
+header {
+    font-size: 30px;
+    text-decoration: solid;
 }
 
-.buttons001 {
+a:hover {
+    text-decoration: none;
+  }
+
+.btn, .btn:hover {
     background-color: purple;
-    color: white;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    width: 100px;
+    border: purple;
 }
 
-.buttons002 {
-    background-color: purple;
-    color: white;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    width: auto;
-}
-
-.container-fluid {
-    margin-top: 50px;
-}
-
-.btn-primary {
-    background-color: purple;
-}
-
-#text001 {
-    text-align: center;
-}
-
-#text002 {
-    text-align: left;
-}
-
-#green001 {
-    color: green;
-}
-
-#red001 {
-    color: red;
-}
-
-.buttons002:hover {
+.btn:hover {
     opacity: .5;
 }
 
-#endquiz {
-    font-size: 30px;
+.btn {
+    color: white;
+}
+
+#questionsElement, #questionsElement2 {
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+li {
+    display: inline;
+    margin-bottom: 10px;
+    border-radius: 50px;
+}
+
+#correctIndicator {
+    color: blue;
     font-weight: bold;
+    font-size: 30px;
 }
 
 #finalScore {
-    text-align: center;
-    text-decoration-style: wavy;
-    margin-bottom: 25px;
-    font-size: 20px;
-    font-style: italic;
-    color: green;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 20px;    
 }

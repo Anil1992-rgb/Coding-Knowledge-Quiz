@@ -5,53 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
+
     <nav class="navbar">
         <a href="highscores.html">View Highscores</a>
-        <div id="timer">Time: 0</div>
+        <div id="timer">Time: 75</div>
     </nav>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 col-sm-12 mx-auto">
-                <div id="text001">
-                    <h2 id="header">Coding Quiz Challenge!</h2>
-                    <p id="scoree"> Score: <text id="score001">0</text></p>
-                    <hr id="linee" />
-                    <div id="message001">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds.
+                <div id="questionsContainer">
+                    <div class="content" id="intro">
+
+                        <header>Coding Quiz Challenge</header>
+                        <br>
+                        <p>
+                            Try to answer the following code-related questions within the time limit.
+                            keep in mind that incorrect answers will penalize your score/time
+                            by ten seconds!
+                        </p>
+                        <button type="button" class="btn btn-primary intro" id="btn">Start Quiz</button>
                     </div>
-                    <div id="endquiz"></div>
-                    <hr id="line2" />
-                    <br/>
+                    <div id="questionsElement"></div>                                                 
+                    <ol class="btn-group-vertical" id="answersElement"></ol>
+                    <ol class="btn-group-vertical" id="answersElement2"></ol>
+                    <ol class="btn-group-vertical" id="answersElement3"></ol>
+                    <ol class="btn-group-vertical" id="answersElement4"></ol>
+                    <ol class="btn-group-vertical" id="answersElement5"></ol>
                     <div id="finalScore"></div>
-                </div>
-                <div id="text002">
-                    <form id="initiaLForm" class="initialForm" action="highscores.html" method="post" name="myForm" onsubmit="return validateForm()">
-                        <strong>Enter Initials:</strong> <input id="initial" type="text" name="Initials" required>
-                        <input class="buttons001" type="submit" value="Submit" action="highscores.html" onclick="location.href = 'highscores.html';">
-                    </form>
-                    <div id="question001"></div>
-                    <div id="option001"></div>
-                    <div id="option002"></div>
-                    <div id="option003"></div>
-                    <div id="option004"></div>
-                    <div id="answer001"></div>
-                    <div id="text001">
-                        <div id="disappear001"><button type="button" class="btn btn-primary" onclick="begin001()">Start Quiz</button></div>
-                    </div>
-                    <div id="next001"></div>
+                    <form id="finalScoreForm" method="POST"></form>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+
+    <script src="script.js" src="questions.js"></script>
+
 </body>
 
 </html>

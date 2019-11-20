@@ -1,257 +1,347 @@
-var Initialss = document.getElementById("initial");
-var initiaLLForm = document.getElementById("initiaLForm");
-initiaLLForm.style.display = "none";
-document.getElementById("line2").style.display = "none";
-
-
-
-document.querySelector('form.initialForm').addEventListener("submit", function(e) {
-    e.preventDefault();
-    console.log(Initialss.value);
-})
 
 
 // grabbing th div with the timer ID //
 var timeDisplay = document.getElementById("timer");
 
 // setting the timer countdown function //
-function setTime() {
+
+
+var questions = [
+  {
+    title: "Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "alerts"
+  },
+
+  {
+    title: "The condition in an if / else statement is enclosed within ____.",
+    choices: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+    answer: "parenthesis"
+  },
+
+  {
+    title: "Arrays in JavaScript can be used to store _______.",
+    choices: ["Numbers and Strings", "Other Arrays", "Booleans", "All of the Above"],
+    answer: "All of the Above"
+  },
+
+  {
+    title: "String values must be enclosed within _______ when being assigned to variables",
+    choices: ["commas", "Curly Brackets", "Quotes", "parenthesis"],
+    answer: "Quotes"
+  },
+
+  {
+    title: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    choices: ["JavaScript", "terminal/bash", "for loops", "console.log"],
+    answer: "console.log"
+  },
+];
+  
+  // creating click function to begin game and setting countdown timer//
+  function startQuiz() {
+$(".btn").on("click", function() {
+  setTime();
+  document.getElementById("btn").style.display = "none";
+  document.getElementById("intro").style.display = "none";
+  var questionsContainer = document.getElementById("questionsContainer").setAttribute("class", "question-content");
+  function setTime() {
     var secondsLeft = 75;
     var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timeDisplay.textContent = "Time: " + secondsLeft;
-
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            timeDisplay.textContent = "";
-        }
+      secondsLeft--;
+      timeDisplay.textContent = "Time: " + secondsLeft;
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        timeDisplay.textContent = "";       
+      }  
     }, 1000);
+    questionSet1();
+
+  // displaying next set of questions //
+  function questionSet1 () {
+  var questionsElement = document.getElementById("questionsElement");
+  questionsElement.textContent = questions[0]["title"];
+  var answers = document.getElementById("answersElement");
+  for (var i = 0; i<questions[0]["choices"].length; i++) {
+  var list = document.createElement("li");
+  list.textContent = questions[0]["choices"][i];
+  list.setAttribute("class", "btn");
+  answers.appendChild(list);
+  }
+  correct1();
+  incorrect1();
+  }
+
+
+  // setting correct function for first answerset //
+  function correct1() {
+  var Correct1 = document.getElementsByTagName("li")[2];
+  console.log(Correct1);
+  $(Correct1).on("click", function() {
+  var correctDiv = document.createElement("div");
+  correctDiv.textContent = ("Correct!");
+  $(".mx-auto").append(correctDiv);
+  correctDiv.setAttribute("id", "correctIndicator");
+  document.getElementById("answersElement").style.display = "none";
+  document.getElementById("questionsElement").style.display = "none";
+  $(correctDiv).delay(200).fadeOut(300);
+  questionSet2();
+})}
+
+ // setting incorrect function for first answerset //
+ function incorrect1() {
+  var Incorrect1 = document.getElementsByTagName("li")[0];
+  var Incorrect2 = document.getElementsByTagName("li")[1];
+  var Incorrect3 = document.getElementsByTagName("li")[3];
+  var IncorrectAll1 = [Incorrect1, Incorrect2, Incorrect3];
+  $(IncorrectAll1).on("click", function() {
+  var incorrectDiv = document.createElement("div");
+  incorrectDiv.textContent = ("Wrong!");
+  $(".mx-auto").append(incorrectDiv);
+  incorrectDiv.setAttribute("id", "correctIndicator");
+  document.getElementById("answersElement").style.display = "none";
+  document.getElementById("questionsElement").style.display = "none";
+  $(incorrectDiv).delay(200).fadeOut(300);
+  secondsLeft-=10;
+  questionSet2();
+})}
+
+// displaying next set of questions //
+  function questionSet2 (){
+  var question2 = document.createElement("div");
+  question2.setAttribute("id", "questionsElement");
+  $("#questionsContainer").prepend(question2);
+  question2.textContent = (questions[1]["title"]);
+  var answers2 = document.getElementById("answersElement2");
+  for (var i = 0; i<questions[1]["choices"].length; i++) {
+  var list2 = document.createElement("li");
+  list2.textContent = questions[1]["choices"][i];
+  list2.setAttribute("class", "btn");
+  answers2.appendChild(list2);
+}
+correct2();
+incorrect2();
 }
 
-$(".btn-primary").on("click", function() {
-    setTime();
-})
+  // setting correct function for second answer //
+  function correct2() {
+    var Correct2 = document.getElementsByTagName("li")[6];
+    console.log(Correct2);
+    $(Correct2).on("click", function() {
+    var correct2Div = document.createElement("div");
+    correct2Div.textContent = ("Correct!");
+    $(".mx-auto").append(correct2Div);
+    correct2Div.setAttribute("id", "correctIndicator");
+    document.getElementById("answersElement2").style.display = "none";
+    document.getElementById("questionsElement").style.display = "none";
+    $(correct2Div).delay(200).fadeOut(300);
+    questionSet3 ();
+  })}
 
-var q = [
-    "<strong>Commonly used data types DO NOT include:<br/><br/>",
-    "<strong>The condition in an if/else statement is enclosed within _______:<br/><br/>",
-    "<strong>Arrays in JavaScript can be used to store ______:<br/><br/>",
-    "<strong>String values must be enclosed within _____ when being assigned to variables:<br/><br/>",
-    "<strong>A very usefull tool used during development and debugging for printing content to the debugger is:<br/><br/>"
-];
+   // setting incorrect function for second answerset //
+ function incorrect2() {
+  var Incorrect1 = document.getElementsByTagName("li")[4];
+  var Incorrect2 = document.getElementsByTagName("li")[5];
+  var Incorrect3 = document.getElementsByTagName("li")[7];
+  var IncorrectAll1 = [Incorrect1, Incorrect2, Incorrect3];
+  $(IncorrectAll1).on("click", function() {
+  var incorrectDiv = document.createElement("div");
+  incorrectDiv.textContent = ("Wrong!");
+  $(".mx-auto").append(incorrectDiv);
+  incorrectDiv.setAttribute("id", "correctIndicator");
+  document.getElementById("answersElement2").style.display = "none";
+  document.getElementById("questionsElement").style.display = "none";
+  $(incorrectDiv).delay(200).fadeOut(300);
+  secondsLeft-=10;
+  questionSet3();
+})}
 
-var a1 = ["<button class=buttons002 onclick=q1i()>Booleans</button>",
-    "<button class=buttons002 onclick=q2c()>Parentheses</button>",
-    "<button class=buttons002 onclick=q3i()>Numbers & Strings</button>",
-    "<button class=buttons002 onclick=q4i()>Curly Brackets</button>",
-    "<button class=buttons002 onclick=q5i()>For Loops</button>"
-];
+  // displaying next set of questions //
+  function questionSet3 (){
+    var question3 = document.createElement("div");
+    question3.setAttribute("id", "questionsElement");
+    $("#questionsContainer").prepend(question3);
+    question3.textContent = (questions[2]["title"]);
+    var answers3 = document.getElementById("answersElement3");
+    for (var i = 0; i<questions[2]["choices"].length; i++) {
+    var list2 = document.createElement("li");
+    list2.textContent = questions[2]["choices"][i];
+    list2.setAttribute("class", "btn");
+    answers3.appendChild(list2);
+  }
+  correct3();
+  incorrect3();
+  }
 
-var a2 = ["<button class=buttons002 onclick=q1c()>Alerts</button>",
-    "<button class=buttons002 onclick=q2i()>Quotes</button>",
-    "<button class=buttons002 onclick=q3i()>Other Arrays</button>",
-    "<button class=buttons002 onclick=q4i()>Commas</button>",
-    "<button class=buttons002 onclick=q5i()>JavaScript</button>"
-];
+  // setting correct function for third answer //
+  function correct3() {
+    var Correct3 = document.getElementsByTagName("li")[11];
+    console.log(Correct3);
+    $(Correct3).on("click", function() {
+    var correct3Div = document.createElement("div");
+    correct3Div.textContent = ("Correct!");
+    $(".mx-auto").append(correct3Div);
+    correct3Div.setAttribute("id", "correctIndicator");
+    document.getElementById("answersElement3").style.display = "none";
+    document.getElementById("questionsElement").style.display = "none";
+    $(correct3Div).delay(200).fadeOut(300);
+    questionSet4 ();
+  })}
 
-var a3 = ["<button class=buttons002 onclick=q1i()>Strings</button>",
-    "<button class=buttons002 onclick=q2i()>Curly Brackets</button>",
-    "<button class=buttons002 onclick=q3i()>Booleans</button>",
-    "<button class=buttons002 onclick=q4c()>Quotes</button>",
-    "<button class=buttons002 onclick=q5i()>Terminal/Bash</button>"
-];
+ // setting incorrect function for third answerset //
+ function incorrect3() {
+  var Incorrect1 = document.getElementsByTagName("li")[8];
+  var Incorrect2 = document.getElementsByTagName("li")[9];
+  var Incorrect3 = document.getElementsByTagName("li")[10];
+  var IncorrectAll1 = [Incorrect1, Incorrect2, Incorrect3];
+  $(IncorrectAll1).on("click", function() {
+  var incorrectDiv = document.createElement("div");
+  incorrectDiv.textContent = ("Wrong!");
+  $(".mx-auto").append(incorrectDiv);
+  incorrectDiv.setAttribute("id", "correctIndicator");
+  document.getElementById("answersElement3").style.display = "none";
+  document.getElementById("questionsElement").style.display = "none";
+  $(incorrectDiv).delay(200).fadeOut(300);
+  secondsLeft-=10;
+  questionSet4();
+})}
 
-var a4 = ["<button class=buttons002 onclick=q1i()>Numbers</button>",
-    "<button class=buttons002 onclick=q2i()>Square Brackets</button>",
-    "<button class=buttons002 onclick=q3c()>All of the Above</button>",
-    "<button class=buttons002 onclick=q4i()>Parentheses</button>",
-    "<button class=buttons002 onclick=q5c()>Console.log</button>"
-];
+  // displaying next set of questions //
+  function questionSet4 (){
+    var question4 = document.createElement("div");
+    question4.setAttribute("id", "questionsElement");
+    $("#questionsContainer").prepend(question4);
+    question4.textContent = (questions[3]["title"]);
+    var answers4 = document.getElementById("answersElement4");
+    for (var i = 0; i<questions[3]["choices"].length; i++) {
+    var list2 = document.createElement("li");
+    list2.textContent = questions[3]["choices"][i];
+    list2.setAttribute("class", "btn");
+    answers4.appendChild(list2);
+  }
+  correct4();
+  incorrect4();
+  }
 
-var c = ["Correct", "Correct", "Correct", "Correct", "Correct"];
-var i = ["Incorrect", "Incorrect", "Incorrect", "Incorrect", "Incorrect"];
+  // setting correct function for fourth answer //
+  function correct4() {
+    var Correct4 = document.getElementsByTagName("li")[14];
+    console.log(Correct4);
+    $(Correct4).on("click", function() {
+    var correct4Div = document.createElement("div");
+    correct4Div.textContent = ("Correct!");
+    $(".mx-auto").append(correct4Div);
+    correct4Div.setAttribute("id", "correctIndicator");
+    document.getElementById("answersElement4").style.display = "none";
+    document.getElementById("questionsElement").style.display = "none";
+    $(correct4Div).delay(200).fadeOut(300);
+    questionSet5();
+  })}
 
+  // setting incorrect function for fourth answerset //
+ function incorrect4() {
+  var Incorrect1 = document.getElementsByTagName("li")[12];
+  var Incorrect2 = document.getElementsByTagName("li")[13];
+  var Incorrect3 = document.getElementsByTagName("li")[15];
+  var IncorrectAll1 = [Incorrect1, Incorrect2, Incorrect3];
+  $(IncorrectAll1).on("click", function() {
+  var incorrectDiv = document.createElement("div");
+  incorrectDiv.textContent = ("Wrong!");
+  $(".mx-auto").append(incorrectDiv);
+  incorrectDiv.setAttribute("id", "correctIndicator");
+  document.getElementById("answersElement4").style.display = "none";
+  document.getElementById("questionsElement").style.display = "none";
+  $(incorrectDiv).delay(200).fadeOut(300);
+  secondsLeft-=10;
+  questionSet5(); 
+})}
 
+  // displaying next set of questions //
+  function questionSet5 (){
+    var question5 = document.createElement("div");
+    question5.setAttribute("id", "questionsElement");
+    $("#questionsContainer").prepend(question5);
+    question5.textContent = (questions[4]["title"]);
+    var answers5 = document.getElementById("answersElement5");
+    for (var i = 0; i<questions[4]["choices"].length; i++) {
+    var list2 = document.createElement("li");
+    list2.textContent = questions[4]["choices"][i];
+    list2.setAttribute("class", "btn");
+    answers5.appendChild(list2);
+  }
+  correct5();
+  incorrect5();
+  }
 
-var s = 0;
-s++;
+  // setting correct function for fifth answer //
+  function correct5() {
+    var Correct5 = document.getElementsByTagName("li")[19];
+    console.log(Correct5);
+    $(Correct5).on("click", function() {
+    var correct5Div = document.createElement("div");
+    correct5Div.textContent = ("Correct!");
+    $(".mx-auto").append(correct5Div);
+    correct5Div.setAttribute("id", "correctIndicator");
+    document.getElementById("answersElement5").style.display = "none";
+    document.getElementById("questionsElement").style.display = "none";
+    $(correct5Div).delay(200).fadeOut(300);
+    scoreInput();
+  })}
 
+  // setting incorrect function for fifth answerset //
+ function incorrect5() {
+  var Incorrect1 = document.getElementsByTagName("li")[16];
+  var Incorrect2 = document.getElementsByTagName("li")[17];
+  var Incorrect3 = document.getElementsByTagName("li")[18];
+  var IncorrectAll1 = [Incorrect1, Incorrect2, Incorrect3];
+  $(IncorrectAll1).on("click", function() {
+  var incorrectDiv = document.createElement("div");
+  incorrectDiv.textContent = ("Wrong!");
+  $(".mx-auto").append(incorrectDiv);
+  incorrectDiv.setAttribute("id", "correctIndicator");
+  document.getElementById("answersElement5").style.display = "none";
+  document.getElementById("questionsElement").style.display = "none";
+  $(incorrectDiv).delay(200).fadeOut(300);
+  secondsLeft-=10;
+  timeDisplay.textContent = "Time: " + secondsLeft;
+  scoreInput();
+})}
 
-document.getElementById("scoree").style.display = "none";
-
-function begin001() {
-    document.getElementById("header").style.display = "none";
-    disappear001.innerHTML = "";
-    message001.innerHTML = "";
-    question001.innerHTML = q[0];
-    option001.innerHTML = a1[0];
-    option002.innerHTML = a2[0];
-    option003.innerHTML = a3[0];
-    option004.innerHTML = a4[0];
-
-}
-
-function q1c() {
-    answer001.innerHTML = "<div id=green001>" + c[0] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new002()>Next</button>";
-    score001.innerHTML = s++;
-
-}
-
-function q1i() {
-    answer001.innerHTML = "<div id=red001>" + i[0] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new002()>Next</button>";
-}
-
-function new002() {
-    question001.innerHTML = q[1];
-    option001.innerHTML = a1[1];
-    option002.innerHTML = a2[1];
-    option003.innerHTML = a3[1];
-    option004.innerHTML = a4[1];
-    next001.innerHTML = "";
-    answer001.innerHTML = "";
-}
-
-function q2c() {
-    answer001.innerHTML = "<div id=green001>" + c[1] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new003()>Next</button>";
-    score001.innerHTML = s++;
-}
-
-function q2i() {
-    answer001.innerHTML = "<div id=red001>" + i[1] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new003()>Next</button>";
-}
-
-function new003() {
-    question001.innerHTML = q[2];
-    option001.innerHTML = a1[2];
-    option002.innerHTML = a2[2];
-    option003.innerHTML = a3[2];
-    option004.innerHTML = a4[2];
-    next001.innerHTML = "";
-    answer001.innerHTML = "";
-}
-
-function q3c() {
-    answer001.innerHTML = "<div id=green001>" + c[2] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new004()>Next</button>";
-    score001.innerHTML = s++;
-}
-
-function q3i() {
-    answer001.innerHTML = "<div id=red001>" + i[2] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new004()>Next</button>";
-}
-
-function new004() {
-    question001.innerHTML = q[3];
-    option001.innerHTML = a1[3];
-    option002.innerHTML = a2[3];
-    option003.innerHTML = a3[3];
-    option004.innerHTML = a4[3];
-    next001.innerHTML = "";
-    answer001.innerHTML = "";
-}
-
-function q4c() {
-    answer001.innerHTML = "<div id=green001>" + c[3] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new005()>Next</button>";
-    score001.innerHTML = s++;
-}
-
-function q4i() {
-    answer001.innerHTML = "<div id=red001>" + i[3] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=new005()>Next</button>";
-}
-
-function new005() {
-    question001.innerHTML = q[4];
-    option001.innerHTML = a1[4];
-    option002.innerHTML = a2[4];
-    option003.innerHTML = a3[4];
-    option004.innerHTML = a4[4];
-    next001.innerHTML = "";
-    answer001.innerHTML = "";
-}
-
-function q5c() {
-    answer001.innerHTML = "<div id=green001>" + c[4] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=end001()>End Of Quiz</button>";
-    score001.innerHTML = s++;
-}
-
-function q5i() {
-    answer001.innerHTML = "<div id=red001>" + i[4] + "</div>";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    next001.innerHTML = "<button class=buttons001 onclick=end001()>End Of Quiz</button>";
-}
-
-function end001() {
-    next001.innerHTML = "";
-    endquiz.innerHTML = "All Done!";
-    question001.innerHTML = "";
-    option001.innerHTML = "";
-    option002.innerHTML = "";
-    option003.innerHTML = "";
-    option004.innerHTML = "";
-    answer001.innerHTML = "";
-    initiaLLForm.style.display = "block";
-    document.getElementById("linee").style.display = "none";
-    document.getElementById("line2").style.display = "block";
-    finalScore.innerHTML = "Your final score is: ";
-
-
+  // displaying final score, stopping timer, and storing name/score to local storage//
+  function scoreInput () {
+    var finalText = document.getElementById("finalScore");
+    finalText.textContent = ("FINAL SCORE: " + secondsLeft);
+    var finalScore = document.createElement("input");
+    finalScore.setAttribute("type", "text");
+    finalScore.setAttribute("placeholder", "Enter name");
+    finalScore.setAttribute("id", "name");
+    $("#finalScoreForm").append(finalScore);
+    clearInterval(timerInterval);
+    var submitBtn = document.createElement("button");
+    submitBtn.textContent = ("Submit");
+    $("#finalScoreForm").append(submitBtn);
+    submitBtn.addEventListener("click", function(event) {
+      event.preventDefault();
+      
+      var name = document.querySelector("#name").value;
+      var score = secondsLeft;
+    
+        localStorage.setItem("name", name);
+        localStorage.setItem("score", score);
+        renderLastRegistered();
+      }
+    );
+  }
 
 }
+})}
+startQuiz();
 
 
-function validateForm() {
-    var x = document.forms["myForm"]["Initials"].value;
-    if (x == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-    console.log("Form")
 
-}
+
+
+
+
+
